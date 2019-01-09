@@ -7,10 +7,11 @@ function startSTMPServer(properties, db) {
   const smtpPort = properties.smtpPort;
   logger.info('Starting smtp on ' + properties.smtpPort);
   mailserver = new SMTPServer({
-      logger: false,
+      logger: true,
       authOptional: true,
       disabledCommands: ['AUTH'],
       disableReverseLookup: true,
+      banner: 'vongue.online Service ready',
       maxClients: 5,
       onConnect(session, callback) {
         logger.info('SMTP Connect from ' + session.remoteAddress);
