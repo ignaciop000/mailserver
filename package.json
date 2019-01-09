@@ -9,6 +9,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "smtp-server": "^3.5.0"
+    "assert": "^1.4.1",
+    "fs": "0.0.1-security",
+    "mailparser": "^2.4.3",
+    "mongodb": "^3.1.10",
+    "path": "^0.12.7",
+    "smtp-server": "^3.5.0",
+    "winston": "^3.1.0"
   }
 }
