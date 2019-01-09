@@ -11,7 +11,6 @@ function startSTMPServer(properties, db) {
       authOptional: true,
       disabledCommands: ['AUTH'],
       disableReverseLookup: true,
-      banner: 'vongue.online Service ready',
       maxClients: 5,
       onConnect(session, callback) {
         logger.info('SMTP Connect from ' + session.remoteAddress);
