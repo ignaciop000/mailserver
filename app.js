@@ -19,5 +19,5 @@ mongo.MongoClient.connect(properties.mongoConnectUrl, { useNewUrlParser: true },
   db.collection('mailboxes').createIndex( {'name': 1}, { unique: true } );
   db.collection('tokens').createIndex( {'ip': 1}, { unique: true } );
 
-  const smtp = require('./server/app/smtp')(properties, db);
+  const smtp = require('./smtp')(properties, db);
 });
