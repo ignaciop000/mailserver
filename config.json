@@ -1,9 +1,9 @@
 {
     "serverBaseUri": "http://localhost:3000",
     "mongoConnectUrl": "mongodb://localhost:27017/",
-    "dbName": "ahem",
+    "dbName": "mails",
     "appListenPort": 3000,
-    "smtpPort" : 2525,
+    "smtpPort" : 25,
     "emailDeleteInterval" : 3600,
     "emailDeleteAge" : 86400,
     "allowAutocomplete" : true,
