@@ -22,10 +22,12 @@ function startSTMPServer(properties, db) {
       },
       onRcptTo(address, session, callback) {
         logger.info('SMTP RCPT TO: ' + address.address);
+        /*
         if (!validateAddress(address, properties.allowedDomains)) {
           logger.error(address + ' is not allowed!');
           return callback(new Error('Only the domains ' + [JSON.stringify(properties.allowedDomains)] + ' are allowed to receive mail'));
         }
+        */
         return callback(); // Accept the address
       },
       onData(stream, session, callback) {
