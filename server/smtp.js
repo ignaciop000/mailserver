@@ -62,7 +62,6 @@ function startSTMPServer(properties, db) {
 
               mail.to.value.forEach(recipient => {
                 const nameAndDomain = recipient.address.split('@');
-                if (properties.allowedDomains.indexOf(nameAndDomain[1].toLowerCase()) > -1) {
                   db.collection('mailboxes').updateOne({'name': nameAndDomain[0].toLowerCase()}, {
                     $push: {
                       'emails': {
@@ -80,8 +79,6 @@ function startSTMPServer(properties, db) {
                     }
                     logger.info('updated email content in db.');
                   });
-                }
-
               });
             });
           });
@@ -102,21 +99,13 @@ function startSTMPServer(properties, db) {
 
 function validateAddress(address, allowedDomains) {
   // return true always if: a) allowedDomains is empty or b) null or c) properties.json only has my.domain.com
-  if (!allowedDomains ||
-    (allowedDomains && allowedDomains.length ||
-      (allowedDomains && allowedDomains.length === 1 && allowedDomains[0] === 'my.domain.com')
-    )) {
+  if (!allowedDomains || (allowedDomains && allowedDomains.length )) {
     return true;
   }
 
-
   let allowed = false;
-
   allowedDomains.forEach(domain => {
-    // console.log(JSON.stringify(address.address.split('@')[1].toLowerCase()));
-    // console.log(JSON.stringify(domain));
     if (address.address.split('@')[1].toLowerCase().endsWith(domain.toLowerCase())) {
-
       allowed = true;
     }
   });
