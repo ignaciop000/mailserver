@@ -7,6 +7,7 @@ const properties = JSON.parse(fs.readFileSync(propertiesPath));
 const mongo = require('mongodb');
 const assert = require('assert');
 const http = require('http');
+const https = require('https');
 
 logger.info('Initializing Mail Server');
 logger.info('Properties', properties);
@@ -35,7 +36,7 @@ mongo.MongoClient.connect(properties.mongoConnectUrl, { useNewUrlParser: true },
   const serverApp = require('./httpServer')(properties, db);
 
   const server = http.createServer(serverApp);
-  const serverSecure = https.createServer(credentials, app);
+  const serverSecure = https.createServer(credentials, serverApp);
   const port = process.env.PORT || properties.appListenPort || '80';
   const portSecure = process.env.SECUREPORT || properties.appListenPortSecure || '443';
 /*
