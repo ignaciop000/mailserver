@@ -7,7 +7,7 @@ function startSTMPServer(properties, db) {
   const smtpPort = properties.smtpPort;
   logger.info('Starting smtp on ' + properties.smtpPort);
   mailserver = new SMTPServer({
-      logger: true,
+      logger: false,
       authOptional: true,
       disabledCommands: ['AUTH'],
       disableReverseLookup: true,
