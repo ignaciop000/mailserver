@@ -11,7 +11,14 @@ class App extends Component {
 
   state = {
     disableView : true,
-    account : ''
+    account : '',
+    mailsCount : 0
+  }
+
+  componentDidMount() {
+    fetch("api/emailCount")
+      .then(data => data.json())
+      .then(res => this.setState({ mailsCount: res.count }));      
   }
   
   generar = () => {
@@ -51,6 +58,13 @@ class App extends Component {
               <MDBInput icon="envelope" type="email" label="Email Account" value={this.state.account} onChange={e => this.changeAccount(e.target.value)}/>
               <MDBBtn color="indigo" onClick={this.generar} >Generar</MDBBtn>
               <MDBBtn color="deep-orange" disabled={this.state.disableView} onClick={this.viewEmails}>Ver Correos</MDBBtn>
+            </MDBCol>
+            <MDBCol md="4"></MDBCol>
+          </MDBRow>
+          <MDBRow>
+            <MDBCol md="4"></MDBCol>
+            <MDBCol md="4">
+              Mail processed {this.state.mailsCount} emails since {this.state.mailsSince}
             </MDBCol>
             <MDBCol md="4"></MDBCol>
           </MDBRow>
