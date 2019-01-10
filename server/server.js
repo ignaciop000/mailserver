@@ -6,6 +6,7 @@ const propertiesPath = process.env.PROPERTIES_PATH || path.join(baseDir, 'config
 const properties = JSON.parse(fs.readFileSync(propertiesPath));
 const mongo = require('mongodb');
 const assert = require('assert');
+const http = require('http');
 
 logger.info('Initializing Mail Server');
 logger.info('Properties', properties);
@@ -18,6 +19,15 @@ mongo.MongoClient.connect(properties.mongoConnectUrl, { useNewUrlParser: true },
   const db = client.db(properties.dbName);
   db.collection('mailboxes').createIndex( {'name': 1}, { unique: true } );
   db.collection('tokens').createIndex( {'ip': 1}, { unique: true } );
+
+  const serverApp = require('./httpServer')(properties, db);
+
+  const server = http.createServer(serverApp);
+  const port = process.env.PORT || properties.appListenPort || '3003';
+
+  server.listen(port, function () {
+    logger.info('API server listening');
+  });
 
   const smtp = require('./smtp')(properties, db);
 });
