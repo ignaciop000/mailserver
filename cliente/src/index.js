@@ -4,6 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Home from './home';
 import Mails from './mails';
 import * as serviceWorker from './serviceWorker';
+import autoBind from 'react-autobind';
 
 ReactDOM.render(<BrowserRouter>
     <div>
