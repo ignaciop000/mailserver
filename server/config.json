@@ -3,6 +3,7 @@
     "mongoConnectUrl": "mongodb://localhost:27017/",
     "dbName": "mails",
     "appListenPort": 8080,
+    "appListenPortSecure": 8443,
     "smtpPort" : 25,
     "emailDeleteInterval" : 3600,
     "emailDeleteAge" : 86400,
